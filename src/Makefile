@@ -1,6 +1,6 @@
 HFILEDIR= ./../include
 CC=gcc
-CFLAGS= $(HFILEDIR)
+CFLAGS= 
 
 OFILEDIR= ./obj
 
