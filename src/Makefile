@@ -1,24 +1,26 @@
-HFILEDIR= ./../include
-CC=gcc
-CFLAGS= 
+CC = gcc
+SRC_DIR = .
+INC_DIR = ./../include
+OBJ_DIR= ./obj
 
-OFILEDIR= ./obj
+LIBS = `pkg-config --libs gtk+-3.0`
+CFLAGS= `pkg-config --cflags --libs gtk+-3.0`
 
 _HFILES =
-HFILES = $(patsubst %, $(HFILEDIR)/%,$(_HFILES))
+HFILES = $(patsubst %, $(INC_DIR)/%,$(_HFILES))
 
 _OFILES = main.o
-OFILES = $(patsubst %, $(OFILEDIR)/%,$(_OFILES))
+OFILES = $(patsubst %, $(OBJ_DIR)/%,$(_OFILES))
 
-default: main
+default: all
 
-$(OFILEDIR)/%.o: %.c $(HFILES)
-	$(CC) -c -o $@ $< $(CFLAGS)
+$(OBJ_DIR)/%.o: %.c $(HFILES)
+	$(CC) -c $< -o $@ $(CFLAGS)
 
-main: $(OFILES)
-		$(CC) -o $@ $^ $(CFLAGS)
+all: $(OFILES)
+		$(CC) $(LIBS) -o $@ $^
 
 .PHONY: clean
 
 clean:
-		rm -f $(OFILEDIR)/*.o *~ core $(HFILEDIR)/*~ 
+		rm -f $(OBJ_DIR)/*.o *~ core $(INC_DIR)/*~ 
