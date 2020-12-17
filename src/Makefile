@@ -9,15 +9,15 @@ CFLAGS= `pkg-config --cflags --libs gtk+-3.0`
 _HFILES =
 HFILES = $(patsubst %, $(INC_DIR)/%,$(_HFILES))
 
-_OFILES = main.o
+_OFILES = main.o app.o
 OFILES = $(patsubst %, $(OBJ_DIR)/%,$(_OFILES))
 
-default: all
+default: main
 
 $(OBJ_DIR)/%.o: %.c $(HFILES)
 	$(CC) -c $< -o $@ $(CFLAGS)
 
-all: $(OFILES)
+main: $(OFILES)
 		$(CC) $(LIBS) -o $@ $^
 
 .PHONY: clean
