@@ -3,13 +3,13 @@ SRC_DIR = .
 INC_DIR = ./../include
 OBJ_DIR= ./obj
 
-LIBS = `pkg-config --libs gtk+-3.0`
-CFLAGS= `pkg-config --cflags --libs gtk+-3.0`
+LIBS = 
+CFLAGS= 
 
 _HFILES =
 HFILES = $(patsubst %, $(INC_DIR)/%,$(_HFILES))
 
-_OFILES = main.o app.o
+_OFILES = main.o
 OFILES = $(patsubst %, $(OBJ_DIR)/%,$(_OFILES))
 
 default: main
